@@ -9,15 +9,18 @@ const nextButton = document.getElementById("next");
 
 //Variables para la paginación
 let currentPage = 1; //Pagina actual    
-let totalPages = 1; //Total de paginas
+let totalPages = 5; //Total de paginas
+
+
 
 //Funcion para obtener los pokemones 
 async function getPokemons() {
     try {
-        //Solicitar los pokemones a la API
-        const limit = 20;
+       //Pagina actual
+        const limit = 4;
         const offset = (currentPage - 1) * limit;
         const response = await fetch(`${BASE_URL}?offset=${offset}&limit=${limit}`);
+         //Solicitar los pokemones a la API
         //en caso de error de respuesta
         if (!response.ok) {
             throw new Error(`HTTP ERROR: ${response.status} ${response.statusText}`);
@@ -31,6 +34,9 @@ async function getPokemons() {
             })
         );
         showPokemons(pokemonsDetails);
+
+        udateButtons();
+        //Actualizar el total de paginas
     }
     catch (error) {
         //Mostrar un error en el contenedor de los personajes 
@@ -52,9 +58,9 @@ async function getPokemons() {
         cardPoke.innerHTML = `
             <img class = "pokemon-image" src="${param.sprites.front_default}" alt="${param.name}"/>
             <h2>${param.name}</h2>
-            <p style="font-size: 1.2em;"> ID: ${param.id}</p>
+            <p style="font-size: 1.2em;">  🪪 ID: ${param.id}</p>
             <p style="font-size: 1.2em;"> Habilidades 🤛: ${param.abilities.map(ability => ability.ability.name).join(", ")}</p>
-            <p style="font-size: 1.2em;"> Tipo 🐉: ${param.types.map(type => type.type.name).join(", ")}</p>
+            <p style="font-size: 1.2em;"> 🐊 Tipo : ${param.types.map(type => type.type.name).join(", ")}</p>
             `;
 
             //Añadir el card al contenedor

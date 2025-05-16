@@ -1,3 +1,77 @@
-body{
-    background-color: beige;
+body {
+ font-famili: "Segoe UI", sans-serif;
+ background-color: #dedee2;
+ color: #f0f0f0;
+ margin: 0;
+ padding: 2rem;
+ font-size: 1.2rem;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #000000;
+}
+
+#pokemons-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; 
+}
+/* estilos a la card/tarjeta de los personajes */
+.card{
+    background-color: #8d1818;
+    border-radius: 13px;
+    padding: 1rem;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.2); 
+    transition: tranform 0.3s ease;
+    
+}
+
+.card:hover{
+    transform: scale(1.05); 
+}
+
+.card h2 {
+    margin-top: 0;
+     color: #000000;
+     font-size: 1.5rem;
+}
+
+.card p {
+    margin: 0;
+    font-size: 1.2rem;
+
+}
+
+.card img {
+    width: 100%;
+    border-radius: 13px;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 20px rgb(255, 255, 255); /*efecto de sombra brillante*/
+
+}
+
+#pagination {
+    display:flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+button{
+    background-color: rgb(247, 247, 59);
+    color: #1e1e2f;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 2rem;
+    border: red 3px solid;
+}
+
+button:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
 }
