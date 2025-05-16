@@ -11,18 +11,20 @@ const nextButton = document.getElementById("next");
 let currentPage = 1; //Pagina actual    
 let totalPages = 1; //Total de paginas
 
-//Funcion para obtener los pokemones
+//Funcion para obtener los pokemones 
 async function getPokemons() {
     try {
         //Solicitar los pokemones a la API
-        const response = await fetch(`${BASE_URL}?${currentPage}`);
+        const limit = 20;
+        const offset = (currentPage - 1) * limit;
+        const response = await fetch(`${BASE_URL}?offset=${offset}&limit=${limit}`);
         //en caso de error de respuesta
         if (!response.ok) {
             throw new Error(`HTTP ERROR: ${response.status} ${response.statusText}`);
         }
         //Extraer los datos de la respuesta de un JSON a un objeto de JavaScript
         const data = await response.json();
-      const pokemonsDetails = await Promise.all(
+        const pokemonsDetails = await Promise.all(
             data.results.map(async (pokemon) => {
                 const res = await fetch(pokemon.url);
                 return await res.json();
@@ -50,11 +52,36 @@ async function getPokemons() {
         cardPoke.innerHTML = `
             <img class = "pokemon-image" src="${param.sprites.front_default}" alt="${param.name}"/>
             <h2>${param.name}</h2>
+            <p style="font-size: 1.2em;"> ID: ${param.id}</p>
             <p style="font-size: 1.2em;"> Habilidades 🤛: ${param.abilities.map(ability => ability.ability.name).join(", ")}</p>
+            <p style="font-size: 1.2em;"> Tipo 🐉: ${param.types.map(type => type.type.name).join(", ")}</p>
             `;
+
             //Añadir el card al contenedor
             container.appendChild(cardPoke);
     });
  }
+
+//Funcion para la paginacion
+function udateButtons() {
+    prevButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage === totalPages;
+}
+
+//Eventos de los botones
+prevButton.addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        getPokemons(currentPage);
+    }
+})
+
+nextButton.addEventListener('click', () => {
+    if (currentPage < totalPages) {
+        currentPage++;
+        getPokemons(currentPage);
+    }
+})
+
 
 getPokemons();
