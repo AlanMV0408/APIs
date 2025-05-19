@@ -5,7 +5,7 @@ const BASE_URL = "https://pokeapi.co/api/v2/pokemon/"; //Endpoint de la API
 //Botones para la paginación
 const container = document.getElementById("pokemons-container");
 const prevButton = document.getElementById("prev");
-const NumPage = document.getElementById("pageNum");
+const pageNum = document.getElementById("pageNum");
 const nextButton = document.getElementById("next");
 
 //Variables para la paginación
@@ -36,7 +36,7 @@ async function getPokemons() {
             })
         );
         showPokemons(pokemonsDetails);
-
+        MostrarPageNum();
         updateButtons();
         //Actualizar el total de paginas
     }
@@ -70,8 +70,14 @@ async function getPokemons() {
     });
  }
 
-//Funcion para la paginacion
+ function MostrarPageNum(){
+    //Mostrar el numero de la pagina
+    let NewpageNum = Math.floor(offset / limit) + 1;
+    pageNum.textContent = NewpageNum
+    pageNum.textContent = 'Página ' + NewpageNum;
+ }
 
+//Funcion para la paginacion
 function updateButtons() {
     prevButton.disabled = offset <= 0;
     nextButton.disabled = offset + limit >= totalPokemons;
