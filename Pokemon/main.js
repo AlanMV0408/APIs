@@ -18,7 +18,7 @@ let totalPokemons = 0;
 //Funcion para obtener los pokemones 
 async function getPokemons() {
     try {
-        
+
         const response = await fetch(`${BASE_URL}?offset=${offset}&limit=${limit}`);
          //Solicitar los pokemones a la API
         //en caso de error de respuesta
@@ -29,16 +29,18 @@ async function getPokemons() {
         const data = await response.json();
         totalPokemons = data.count; //Total de pokemones
 
+        //Es una promesa que recorre el array de pokemones
+        //y obtiene los detalles de cada uno de ellos
         const pokemonsDetails = await Promise.all(
             data.results.map(async (pokemon) => {
                 const res = await fetch(pokemon.url);
                 return await res.json();
             })
         );
-        showPokemons(pokemonsDetails);
-        MostrarPageNum();
-        updateButtons();
-        //Actualizar el total de paginas
+
+        showPokemons(pokemonsDetails);  //Mostrar los pokemones
+        MostrarPageNum();              //Mostrar el numero de la pagina 
+        updateButtons();              //Actualizar el total de paginas
     }
     catch (error) {
         //Mostrar un error en el contenedor de los personajes 
@@ -72,9 +74,9 @@ async function getPokemons() {
 
  function MostrarPageNum(){
     //Mostrar el numero de la pagina
-    let NewpageNum = Math.floor(offset / limit) + 1;
+    let NewpageNum = (offset / limit) + 1;
     pageNum.textContent = NewpageNum
-    pageNum.textContent = 'Página ' + NewpageNum;
+    pageNum.textContent = `Página ${NewpageNum}`;
  }
 
 //Funcion para la paginacion
@@ -83,8 +85,9 @@ function updateButtons() {
     nextButton.disabled = offset + limit >= totalPokemons;
 }
 
-//Eventos de los botones
-prevButton.addEventListener('click', () => {
+//Eventos de los botones 
+
+prevButton.addEventListener('click', () => { 
     if (offset >= limit) {
         offset -= limit;
         getPokemons();
