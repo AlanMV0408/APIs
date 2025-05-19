@@ -5,20 +5,20 @@ const BASE_URL = "https://pokeapi.co/api/v2/pokemon/"; //Endpoint de la API
 //Botones para la paginación
 const container = document.getElementById("pokemons-container");
 const prevButton = document.getElementById("prev");
+const NumPage = document.getElementById("pageNum");
 const nextButton = document.getElementById("next");
 
 //Variables para la paginación
-let currentPage = 1; //Pagina actual    
-let totalPages = 5; //Total de paginas
+const limit = 5; 
+let offset = 0;
+let totalPokemons = 0;
 
 
 
 //Funcion para obtener los pokemones 
 async function getPokemons() {
     try {
-       //Pagina actual
-        const limit = 4;
-        const offset = (currentPage - 1) * limit;
+        
         const response = await fetch(`${BASE_URL}?offset=${offset}&limit=${limit}`);
          //Solicitar los pokemones a la API
         //en caso de error de respuesta
@@ -27,6 +27,8 @@ async function getPokemons() {
         }
         //Extraer los datos de la respuesta de un JSON a un objeto de JavaScript
         const data = await response.json();
+        totalPokemons = data.count; //Total de pokemones
+
         const pokemonsDetails = await Promise.all(
             data.results.map(async (pokemon) => {
                 const res = await fetch(pokemon.url);
@@ -35,7 +37,7 @@ async function getPokemons() {
         );
         showPokemons(pokemonsDetails);
 
-        udateButtons();
+        updateButtons();
         //Actualizar el total de paginas
     }
     catch (error) {
@@ -69,25 +71,26 @@ async function getPokemons() {
  }
 
 //Funcion para la paginacion
-function udateButtons() {
-    prevButton.disabled = currentPage === 1;
-    nextButton.disabled = currentPage === totalPages;
+
+function updateButtons() {
+    prevButton.disabled = offset <= 0;
+    nextButton.disabled = offset + limit >= totalPokemons;
 }
 
 //Eventos de los botones
 prevButton.addEventListener('click', () => {
-    if (currentPage > 1) {
-        currentPage--;
-        getPokemons(currentPage);
+    if (offset >= limit) {
+        offset -= limit;
+        getPokemons();
     }
-})
+});
 
 nextButton.addEventListener('click', () => {
-    if (currentPage < totalPages) {
-        currentPage++;
-        getPokemons(currentPage);
+    if (offset +  limit < totalPokemons) {
+        offset += limit;
+        getPokemons();
     }
-})
+});
 
 
 getPokemons();
