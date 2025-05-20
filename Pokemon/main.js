@@ -60,8 +60,11 @@ async function getPokemons() {
         cardPoke.className = "card";
         //Estructura del card en el HTML de cada pokemon
         cardPoke.innerHTML = `
-            <p class = "circle">🔴🟡🟢</p>
+            <div class="card-header">
             <p class = "Voz"></p>
+            <p class = "circle">🔴🟡🟢</p>
+            </div>
+             <hr>
             <img class = "pokemon-image" src="${param.sprites.front_default}" alt="${param.name}"/>
             <h2>${param.name}</h2>
             <p style="font-size: 1.2em;">  🪪 ID: ${param.id}</p>

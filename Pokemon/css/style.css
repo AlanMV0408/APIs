@@ -50,7 +50,7 @@ grid-column-gap: 1.5rem;
 
 .card{
    
-    background: linear-gradient(145deg, #d32f2f, #b71c1c); 
+    background: #ff0000cc;
     border-radius: 20px;
     padding: 1rem;
     box-shadow: 0 0 10px #000000aa;
@@ -125,7 +125,8 @@ button:disabled{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background: #006efff6;
+    background: #3F5EFB;
+background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(0, 0, 0, 1) 100%);
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -152,4 +153,19 @@ button:disabled{
     width: 70px;
     height: 70px;
     font-weight: bold;
+}
+
+.card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+hr{
+    border: 0;
+    height: 3px;
+    background-color: #000000;
+    margin: 0 0 1rem;
+    border-radius: 3px;
 }
