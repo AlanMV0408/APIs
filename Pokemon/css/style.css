@@ -14,18 +14,28 @@ body {
 }
 
 
+
+.mogra-regular {
+  font-family: "Mogra", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 h1{
     
+    font-family: "Mogra", system-ui;
     text-align: center;
     margin-bottom: 2rem;
     color: #fbff23;
-    background-color: #8d1818;
+    background-color: #fa1313;
     padding: 1rem;
     border-radius: 36px;
     width: 25%;
     display: block;           /* Asegura que sea un bloque */
     margin-left: auto;        /* Centra horizontalmente */
     margin-right: auto; 
+    text-shadow: 4px 4px 0 #002cf1;
 }
 
 #pokemons-container{
@@ -37,65 +47,78 @@ grid-column-gap: 1.5rem;
 
 
 }
-/* estilos a la card/tarjeta de los personajes */
+
 .card{
    
-    background-color: #ad3030;
-    border-radius: 13px;
+    background: linear-gradient(145deg, #d32f2f, #b71c1c); 
+    border-radius: 20px;
     padding: 1rem;
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.2); 
-    transition: tranform 0.3s ease;
-    
+    box-shadow: 0 0 10px #000000aa;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #ffcc00; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
 }
 
 .card:hover{
     transform: scale(1.05); 
 }
 
+
 .card h2 {
-    margin-top: 0;
-     color: #000000;
-     font-size: 1.5rem;
+    
+    margin: 0.5rem 0;
+    color: #ffffff;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+    text-align: center;
 }
 
 .card p {
     margin: 0;
     font-size: 1.2rem;
-
+    font-size: 1rem;
+    color: #f1f1f1;
 }
 
 .card img {
-    background-color: rgba(105, 179, 105, 0.747);
+    background-color: #ffffff;
     width: 100%;
-    border-radius: 13px;
+    border-radius: 10px;
     margin-bottom: 1rem;
-    box-shadow: 0 0 20px rgb(0, 0, 0); /*efecto de sombra brillante*/
-    border: 20px solid rgba(255, 255, 255, 0.664);
-    
+    box-shadow: inset 0 0 5px #000000;
+    border: 4px solid #333;
+    padding: 10px;
 }
 
 #pagination {
-    display:flex;
+   display: flex;
+    align-items: stretch;
+    gap: 3rem;
+    align-content: space-around;
     justify-content: center;
-    gap: 1rem;
 }
 
 button{
-    background-color: rgb(247, 247, 59);
+    background-color: rgb(255, 255, 0);
     color: #1e1e2f;
     border: none;
     border-radius: 5px;
     padding: 0.5rem 1rem;
-    font-size: 1.2rem;
+    font-size: 2rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-bottom: 2rem;
-    border: red 3px solid;
+    border: red 2px solid;
 }
 
 button:disabled{
     opacity: 0.5;
     cursor: not-allowed;
+    background-color: rgb(71, 71, 71);
 }
 
 .Voz{
@@ -113,4 +136,20 @@ button:disabled{
     justify-content: flex-start;
     align-items: center;
     margin-top: 0;
+}
+
+#pageNum{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #000000;
+    background: #ff0000;
+    background: #ff1f1f;
+    background: linear-gradient(180deg, rgba(255, 31, 31, 1) 49%, rgba(0, 0, 0, 1) 55%, rgba(255, 255, 255, 1) 58%);
+    border-radius: 180px;
+    width: 70px;
+    height: 70px;
+    font-weight: bold;
 }
