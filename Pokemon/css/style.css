@@ -18,7 +18,7 @@ h1{
     
     text-align: center;
     margin-bottom: 2rem;
-    color: #000000;
+    color: #fbff23;
     background-color: #8d1818;
     padding: 1rem;
     border-radius: 36px;
@@ -39,7 +39,8 @@ grid-column-gap: 1.5rem;
 }
 /* estilos a la card/tarjeta de los personajes */
 .card{
-    background-color: #8d1818;
+   
+    background-color: #ad3030;
     border-radius: 13px;
     padding: 1rem;
     box-shadow: 0 0 12px rgba(255, 255, 255, 0.2); 
@@ -64,11 +65,13 @@ grid-column-gap: 1.5rem;
 }
 
 .card img {
+    background-color: rgba(105, 179, 105, 0.747);
     width: 100%;
     border-radius: 13px;
     margin-bottom: 1rem;
-    box-shadow: 0 0 20px rgb(255, 255, 255); /*efecto de sombra brillante*/
-
+    box-shadow: 0 0 20px rgb(0, 0, 0); /*efecto de sombra brillante*/
+    border: 20px solid rgba(255, 255, 255, 0.664);
+    
 }
 
 #pagination {
@@ -96,15 +99,18 @@ button:disabled{
 }
 
 .Voz{
-    
-    background: rgb(26, 15, 184);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: #006efff6;
     border-radius: 50%;
     width: 60px;
     height: 60px;
 }
 
-.circle{
+.card .circle{
     display: flex;
-    justify-content: center;   
-
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 0;
 }
